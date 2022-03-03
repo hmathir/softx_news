@@ -5,7 +5,7 @@ class NewsProvider extends GetConnect {
   void onInit() {
   }
 
-  Future getNews() async{
+  Future getNewsProvider() async{
     var response = await get('https://jsonplaceholder.typicode.com/posts');
     return response.body;
 

@@ -17,7 +17,7 @@ class HomeController extends GetxController {
 
   Future getNews() async{
     loading(true);
-    news (await newsProvider.getNews());
+    news (await newsProvider.getNewsProvider());
     loading(false);
   }
 
