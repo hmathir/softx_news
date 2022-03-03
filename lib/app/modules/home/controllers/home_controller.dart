@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:softx_news/app/modules/home/providers/news_provider.dart';
 
@@ -22,7 +20,6 @@ class HomeController extends GetxController {
     news (await newsProvider.getNews());
     loading(false);
   }
-
 
 
   @override
