@@ -11,6 +11,8 @@ class ButtomNavigationBarWidgets extends GetView<MainController> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      selectedItemColor: Colors.purple,
+      unselectedItemColor: Colors.black,
       onTap: controller.ChangeTabController,
       currentIndex: controller.tabIndex,
       items: [

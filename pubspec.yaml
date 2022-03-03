@@ -22,4 +22,8 @@ flutter_localizations:
 
 flutter: 
   uses-material-design: true
+  assets:
+    - assets/
+
+
 
