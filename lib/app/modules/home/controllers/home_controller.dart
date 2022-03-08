@@ -1,14 +1,13 @@
 import 'package:get/get.dart';
-import 'package:softx_news/app/modules/home/providers/news_provider.dart';
+import 'package:softx_news/app/modules/home/providers/home_provider.dart';
 
 class HomeController extends GetxController {
-  NewsProvider newsProvider = Get.find<NewsProvider>();
+  HomeProvider newsProvider = Get.find<HomeProvider>();
 
-  var news = [].obs;
+
   var loading = false.obs;
+  var news = [].obs; // Getting Top Headline News Via NewsAPI
 
-
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -29,5 +28,4 @@ class HomeController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 }

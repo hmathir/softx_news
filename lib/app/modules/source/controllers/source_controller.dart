@@ -1,12 +1,22 @@
 import 'package:get/get.dart';
+import 'package:softx_news/app/modules/source/providers/source_provider.dart';
 
 class SourceController extends GetxController {
-  //TODO: Implement SourceController
+  SourceProvider sourceProvider = Get.find<SourceProvider>();
 
-  final count = 0.obs;
+  var loading = false.obs;
+  var source = [].obs; // Getting Sources Via NewsAPI
+
   @override
   void onInit() {
     super.onInit();
+    getSources();
+  }
+
+  Future getSources() async{
+    loading(true);
+    source (await sourceProvider.getSourcesProvider());
+    loading(false);
   }
 
   @override
@@ -16,5 +26,4 @@ class SourceController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 }
