@@ -6,7 +6,8 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const SOURCE = _Paths.SOURCE;
   static const SEARCH = _Paths.SEARCH;
-  static const MAIN = _Paths.MAIN;
+  static const CORE = _Paths.CORE;
+  static const SPORTS = _Paths.SPORTS;
 }
 
 abstract class _Paths {
@@ -14,5 +15,6 @@ abstract class _Paths {
   static const HOME = '/home';
   static const SOURCE = '/source';
   static const SEARCH = '/search';
-  static const MAIN = '/main';
+  static const CORE = '/core';
+  static const SPORTS = '/sports';
 }
