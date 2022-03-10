@@ -1,22 +1,27 @@
 import 'package:get/get.dart';
-import 'package:softx_news/app/modules/source/providers/source_provider.dart';
+import 'package:softx_news/app/network/fetch_source.dart';
 
 class SourceController extends GetxController {
-  SourceProvider sourceProvider = Get.find<SourceProvider>();
 
-  var loading = false.obs;
-  var source = [].obs; // Getting Sources Via NewsAPI
+  var isLoading = false.obs;
+  var sourceList = [].obs;
 
   @override
   void onInit() {
+    FetchSource();
     super.onInit();
-    getSources();
   }
 
-  Future getSources() async{
-    loading(true);
-    source (await sourceProvider.getSourcesProvider());
-    loading(false);
+  void FetchSource() async{
+    isLoading(true);
+    try{
+      var sources = await FetchSourceData().fetchSourceData();
+      if(sources != null){
+        sourceList.assignAll(sources);
+      }
+    } finally {
+      isLoading(false);
+    }
   }
 
   @override
