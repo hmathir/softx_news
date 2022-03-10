@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../controllers/home_controller.dart';
+import 'package:shimmer/shimmer.dart';
 
 class AllNewsWidgets extends StatelessWidget {
   const AllNewsWidgets({
@@ -8,7 +7,7 @@ class AllNewsWidgets extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
-  final HomeController controller;
+  final  controller;
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +28,38 @@ class AllNewsWidgets extends StatelessWidget {
             ),
             child: Row(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.asset(
-                    'assets/BBC.png',
-                    height: 70,
-                    width: 70,
-
-                  ),
+                if (controller.news[index]['urlToImage'] == null) Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image.asset(
+                          'assets/imagenotavailable.png',
+                          fit: BoxFit.fill,
+                          height: 70,
+                          width: 100,
+                      ),
+                        )) else Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image.network(
+                            controller.news[index]['urlToImage'],
+                            fit: BoxFit.fill,
+                            height: 70,
+                            width: 100,
+                            loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent? loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return Center(
+                                child: Shimmer.fromColors(child: child, baseColor: Colors.black, highlightColor: Colors.black)
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                SizedBox(
+                  width: 10,
                 ),
-                SizedBox(width: 10,),
                 Expanded(
+                  flex: 3,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:softx_news/app/modules/home/controllers/home_controller.dart';
-import 'dart:math';
 
+
+// ignore: must_be_immutable
 class SecondarySlider extends StatelessWidget {
-  const SecondarySlider({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-  final HomeController controller;
+SecondarySlider({this.controller});
+var controller;
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,31 +18,21 @@ class SecondarySlider extends StatelessWidget {
           right: 6,
           bottom: 20,
         ),
-        itemCount: 100,
+        itemCount: controller.source.length,
         itemBuilder: (context, index) {
           return Container(
             width: 200,
             margin: EdgeInsets.only(right: 14),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color:
-                  Colors.primaries[Random().nextInt(Colors.primaries.length)],
+              color: Colors.yellow,
             ),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Stack(
                 children: <Widget>[
                   Positioned(
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset('assets/source.png'),),),
-                  Positioned(
-                    child: Text(
-                      'SoftX',
-                      style: TextStyle(color: Colors.white,
-                    ),
-                  ),
-                  )],
+                      child: Text(controller.source[index]['name']),),],
               ),
             ),
           );

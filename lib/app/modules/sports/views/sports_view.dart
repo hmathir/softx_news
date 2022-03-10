@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/sports_controller.dart';
+import 'package:softx_news/app/core/controllers/core_controller.dart';
+import 'package:softx_news/app/core/views/News_View.dart';
 
-class SportsView extends GetView<SportsController> {
+
+class SportsView extends GetView<CoreController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,48 +27,60 @@ class SportsView extends GetView<SportsController> {
             itemCount: controller.sports.length,
             physics: BouncingScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
-              return Card(
-                color: Colors.white,
-                elevation: 10,
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.white, width: 1.5),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Container(
-                  height: MediaQuery.of(context).size.height/4,
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(children: [
-                  controller.sports[index]['urlToImage'] == null ? Expanded(child: Image.asset('assets/imagenotavailable.png')) :
-                    Expanded(
-                      child: Image.network(
-                        controller.sports[index]['urlToImage'],
-                        fit: BoxFit.cover,
-                        width: 300,
-                        loadingBuilder: (BuildContext context, Widget child,
-                            ImageChunkEvent? loadingProgress) {
-                          if (loadingProgress == null ) return child;
-                          return Center(
-                            child: CircularProgressIndicator(
-                              value: loadingProgress.expectedTotalBytes != null
-                                  ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                                  : null,
-                            ),
-                          );
-                        },
-                      ),
+              return GestureDetector(
+                onTap: (){
+                  Get.to(()=> NewsView(index: index, value: controller.sports,));
+                },
+                child: Card(
+                  color: Colors.white,
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.white, width: 1.5),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height / 4,
+                    width: MediaQuery.of(context).size.width,
+                    child: Column(
+                      children: [
+                        controller.sports[index]['urlToImage'] == null
+                            ? Expanded(
+                                child:
+                                    Image.asset('assets/imagenotavailable.png'))
+                            : Expanded(
+                                child: Image.network(
+                                  controller.sports[index]['urlToImage'],
+                                  fit: BoxFit.cover,
+                                  width: 300,
+                                  loadingBuilder: (BuildContext context,
+                                      Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        value:
+                                            loadingProgress.expectedTotalBytes !=
+                                                    null
+                                                ? loadingProgress
+                                                        .cumulativeBytesLoaded /
+                                                    loadingProgress
+                                                        .expectedTotalBytes!
+                                                : null,
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                        Text(controller.sports[index]['title'].toString())
+                      ],
                     ),
-
-                      Text(controller.sports[index]['title'].toString())
-                  ],),
-                )
-
+                  ),
+                ),
               );
             },
           ),
         );
-      }
-      ),
+      }),
     );
   }
 }

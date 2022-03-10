@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 
-class SourceController extends GetxController {
+class TechController extends GetxController {
 
+  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -14,4 +15,5 @@ class SourceController extends GetxController {
 
   @override
   void onClose() {}
+  void increment() => count.value++;
 }
