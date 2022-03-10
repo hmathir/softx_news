@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
+import 'package:softx_news/app/core/constant/const.dart';
+import 'package:softx_news/app/core/controllers/core_controller.dart';
 import 'package:softx_news/app/modules/home/views/home_view.dart';
-import 'package:softx_news/app/modules/search/views/search_view.dart';
 import 'package:softx_news/app/modules/source/views/source_view.dart';
 import 'package:softx_news/app/modules/sports/views/sports_view.dart';
-
-import '../controllers/core_controller.dart';
+import 'package:softx_news/app/modules/tech/views/tech_view.dart';
 
 class CoreView extends GetView<CoreController> {
   @override
@@ -37,10 +36,7 @@ class CoreView extends GetView<CoreController> {
                   Icons.menu,
                   color: Colors.black,
                 )),
-            title: Text(
-              'SoftX News',
-              style: TextStyle(fontSize: 15, color: Colors.black),
-            ),
+            title: pageTitle,
             actions: [
               IconButton(
                   onPressed: () {},
@@ -79,13 +75,13 @@ class CoreView extends GetView<CoreController> {
                   'Covid 19',
                   style: TextStyle(color: Colors.black),
                 ),
-              )
+              ),
             ]),
           ),
           body: TabBarView(children: [
             HomeView(),
             SportsView(),
-            SearchView(),
+            TechView(),
             HomeView(),
             SourceView(),
           ]))

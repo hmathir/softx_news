@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
-import '../widgets/Breaking_News_Slider_Widgets.dart';
-import '../widgets/All_News_Widgets.dart';
-import '../widgets/Top_News_Slider_Widgets.dart';
+import 'package:softx_news/app/modules/home/widgets/All_News_Widgets.dart';
+import 'package:softx_news/app/modules/home/widgets/Breaking_News_Slider_Widgets.dart';
+import 'package:softx_news/app/modules/home/widgets/Secondary_Slider_Widgets.dart';
+import 'package:softx_news/app/modules/home/widgets/Third_Slider.dart';
 import 'package:get/get.dart';
-import '../controllers/home_controller.dart';
-import '../widgets/Secondary_Slider_Widgets.dart';
+import 'package:softx_news/app/core/controllers/core_controller.dart';
 
-class HomeView extends GetView<HomeController> {
+class HomeView extends GetView<CoreController> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,26 +29,24 @@ class HomeView extends GetView<HomeController> {
               child: ListView(
                 children: [
                   Container(
-                        height: 20,
-                        child: Marquee(
-                          text: controller.news[0]['title'].toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                          scrollAxis: Axis.horizontal,
-                          blankSpace: 20.0,
-                          velocity: 100.0,
-                          pauseAfterRound: Duration(seconds: 1),
-                          startPadding: 10.0,
-                          accelerationCurve: Curves.linear,
-                          decelerationCurve: Curves.easeOut,
+                    height: 20,
+                      child: Marquee(
+                        text: 'Latest News: ' + controller.sports[0]['title'].toString(),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
+                        scrollAxis: Axis.horizontal,
+                        blankSpace: 100.0,
+                        velocity: 100.0,
+                        pauseAfterRound: Duration(seconds: 1),
+                        startPadding: 10.0,
+                        accelerationCurve: Curves.linear,
+                        decelerationCurve: Curves.easeOut,
+                      ),
                   ),
-                  TopNewsSlider(
-                    controller: controller,
-                  ),
-                  SecondarySlider(controller: controller),
                   BreakingNewsSliderWidget(controller: controller),
+                  SecondarySlider(controller: controller),
+                  ThirdSliderWidget(controller: controller),
                   AllNewsWidgets(controller: controller),
                 ],
               ),
@@ -58,3 +57,4 @@ class HomeView extends GetView<HomeController> {
     );
   }
 }
+

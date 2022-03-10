@@ -8,6 +8,8 @@ abstract class Routes {
   static const SEARCH = _Paths.SEARCH;
   static const CORE = _Paths.CORE;
   static const SPORTS = _Paths.SPORTS;
+  static const NEWS_VIEW = _Paths.NEWS_VIEW;
+  static const TECH = _Paths.TECH;
 }
 
 abstract class _Paths {
@@ -17,4 +19,6 @@ abstract class _Paths {
   static const SEARCH = '/search';
   static const CORE = '/core';
   static const SPORTS = '/sports';
+  static const NEWS_VIEW = '/newsview';
+  static const TECH = '/tech';
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/source_controller.dart';
+import 'package:softx_news/app/core/controllers/core_controller.dart';
 
-class SourceView extends GetView<SourceController> {
+class SourceView extends GetView<CoreController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
