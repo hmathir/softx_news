@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
-import 'package:softx_news/app/core/controllers/core_controller.dart';
-import 'package:softx_news/app/modules/sports/controllers/sports_controller.dart';
 
+import '../controllers/sports_controller.dart';
 
 class SportsBinding extends Bindings {
   @override
@@ -9,8 +8,5 @@ class SportsBinding extends Bindings {
     Get.lazyPut<SportsController>(
       () => SportsController(),
     );
-    Get.lazyPut<CoreController>(() => CoreController(),
-    );
-
   }
 }

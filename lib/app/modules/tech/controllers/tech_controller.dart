@@ -1,11 +1,27 @@
 import 'package:get/get.dart';
+import 'package:softx_news/app/network/fetch_tech.dart';
 
 class TechController extends GetxController {
 
-  final count = 0.obs;
+  var isLoading = false.obs;
+  var techNewsList = [].obs;
+
   @override
   void onInit() {
     super.onInit();
+    fetchTechNews();
+  }
+
+  void fetchTechNews() async{
+    isLoading(true);
+    try{
+      var techNews = await FetchTechData().fetchTechData();
+      if(techNews != null){
+        techNewsList.assignAll(techNews);
+      }
+    } finally {
+      isLoading(false);
+    }
   }
 
   @override
@@ -15,5 +31,4 @@ class TechController extends GetxController {
 
   @override
   void onClose() {}
-  void increment() => count.value++;
 }

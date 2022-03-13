@@ -1,55 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:get/get.dart';
-import 'package:softx_news/app/core/constant/const.dart';
 import 'package:softx_news/app/core/controllers/core_controller.dart';
 
 
-// ignore: must_be_immutable
+
 class NewsView extends GetView<CoreController> {
-   NewsView({ required this.index,required this.value,});
-   var index;
-   var value;
+  final String? details;
+  final String? title;
+  final String? image;
+  final String? content;
+  final String? shareURL;
+  final String? source;
+  final String? publishDT;
+  const NewsView({
+    Key? key,
+    this.details,
+    this.title,
+    this.image,
+    this.content,
+    this.shareURL,
+    this.source,
+    this.publishDT,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Future<void> share() async {
       await FlutterShare.share(
-          title: value[index]['title'],
-          linkUrl: value[index]['url']);
+          title: title.toString(),
+          linkUrl: shareURL.toString());
           }
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
         foregroundColor: Colors.black,
-        title: pageTitle,
+        title: Text(appLocalization.appTitle, style: TextStyle(color: Colors.black),),
         actions: [
           IconButton(onPressed: share, icon: Icon(Icons.share))
         ],
       ),
       body: SingleChildScrollView(
         child: SafeArea(
-          child: Obx(() {
-            if (controller.loading.value) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (value.isEmpty) {
-              return Center(
-                child: Text('No Post Found'),
-              );
-            }
-            return Padding(
+          child:
+             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                value[index]['urlToImage'] == null
-                    ? Image.asset('assets/imagenotavailable.png')
+                image == null
+                    ? Image.asset('assets/imagenotavailable.png', fit: BoxFit.cover,)
                     : Image.network(
-                        value[index]['urlToImage'],
+                        image.toString(),
                         fit: BoxFit.cover,
                         loadingBuilder: (BuildContext context, Widget child,
                             ImageChunkEvent? loadingProgress) {
@@ -65,26 +69,25 @@ class NewsView extends GetView<CoreController> {
                         },
                       ),
                 Text(
-                  value[index]['title'] == null
+                  title == null
                       ? ''
-                      :value[index]['title'],
+                      :title.toString(),
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
                 SizedBox(height: 10,),
-                Text(value[index]['description'] == null
+                Text(details == null
                     ? ''
-                    :'Description:: \n'  + value[index]['description']),
+                    :details.toString()),
                     SizedBox(height: 10,),
-                Text(value[index]['content'] == null
+                Text(content == null
                     ? ''
-                    : 'Content: \n'  + value[index]['content']),
+                    : content.toString()),
                     SizedBox(height: 20,),
-                    Text('Source: ' + value[index]['source']['name'] == '' ? '' : 'Source: ' + value[index]['source']['name']),
-                    Text('Published Date & Time: ' + value[index]['publishedAt'] == '' ? '' : 'Published Date & Time: ' + value[index]['publishedAt']),
+                    Text(source == '' ? '' :'Source: ' + source.toString(),style: TextStyle(color: Colors.red),),
+                    Text(publishDT == '' ? '' : 'Published Date & Time: ' + publishDT.toString()),
               ]),
 
-            );
-          }),
+            )
         ),
       ),
     );
