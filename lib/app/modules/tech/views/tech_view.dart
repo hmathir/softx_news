@@ -34,7 +34,7 @@ class TechView extends GetView<TechController> {
                         title: controller.techNewsList[index].title.toString(),
                         details:
                         controller.techNewsList[index].description.toString(),
-                        image: controller.techNewsList[index].urlToImage.toString(),
+                        image: controller.techNewsList[index].urlToImage,
                         content: controller.techNewsList[index].content.toString(),
                         shareURL: controller.techNewsList[index].urlToImage.toString(),
                         source: controller.techNewsList[index].source.name.toString(),

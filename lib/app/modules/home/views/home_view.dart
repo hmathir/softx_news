@@ -9,10 +9,10 @@ import 'package:softx_news/app/modules/source/controllers/source_controller.dart
 import 'package:softx_news/app/modules/sports/controllers/sports_controller.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
-class HomeView extends GetView<HomeController> {
+SportsController sportsController = Get.find<SportsController>();
+SourceController sourceController = Get.find<SourceController>();
 
-  SportsController sportsController = Get.find<SportsController>();
-  SourceController sourceController = Get.find<SourceController>();
+class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

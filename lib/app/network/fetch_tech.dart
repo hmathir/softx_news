@@ -1,5 +1,3 @@
-//
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:softx_news/app/modules/tech/model/tech_model.dart';
