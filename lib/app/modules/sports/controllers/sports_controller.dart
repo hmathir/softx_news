@@ -1,29 +1,21 @@
 import 'package:get/get.dart';
-import 'package:softx_news/app/network/fetch_sports.dart';
+import 'package:softx_news/app/modules/sports/providers/sports_provider.dart';
 
 class SportsController extends GetxController {
-
-  var isLoading = false.obs;
-  var sportsNewsList = [].obs;
-
+  var sports = [].obs;
+  var loading = false.obs;
 
   @override
   void onInit() {
-    fetchSportsNews();
     super.onInit();
+    getSports();
   }
 
-  void fetchSportsNews() async{
-    try {
-      isLoading(true);
-      var sportsNews = await FetchSportsData().fetchSportsData();
-      if(sportsNews != null) {
-        sportsNewsList.assignAll(sportsNews);
-      }
-    } finally {
-      isLoading(false);
-    }
-  }
+Future getSports() async{
+    loading(true);
+    sports (await SportsProvider().getSportsProvider());
+    loading(false);
+}
 
   @override
   void onReady() {
